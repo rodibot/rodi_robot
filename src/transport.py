@@ -9,9 +9,8 @@ class Transport(object):
     hostname = "192.168.4.1"
     port = "1234"
 
-    # TODO: support other commands besides move
-    def send_command(self, param1, param2):
-        request = "/3/" + str(param1) + "/" + str(param2)
+    def send_command(self, params):
+        request = "/" + "/".join(map(str,params))
 
         try:
             self.conn = HTTPConnection(self.hostname, port=self.port)
@@ -23,16 +22,16 @@ class Transport(object):
             logerr("the HTTP request failed: " + str(e))
 
     def move_forward(self):
-        self.send_command(100, 100)
+        self.send_command([3, 100, 100])
 
     def move_reverse(self):
-        self.send_command(-100, -100)
+        self.send_command([3, -100, -100])
 
     def move_left(self):
-        self.send_command(-100, 100)
+        self.send_command([3, -100, 100])
 
     def move_right(self):
-        self.send_command(100, -100)
+        self.send_command([3, 100, -100])
 
     def stop(self):
-        self.send_command(0, 0)
+        self.send_command([3, 0, 0])
