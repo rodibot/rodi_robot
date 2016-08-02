@@ -15,11 +15,12 @@ class Transport(object):
         try:
             self.conn = HTTPConnection(self.hostname, port=self.port)
             self.conn.request("GET", request)
-            response = self.conn.getresponse()
-            print response
+            response = self.conn.getresponse().read()
             self.conn.close()
+            return response
         except Exception as e:
             logerr("the HTTP request failed: " + str(e))
+            return 0
 
     def move_forward(self):
         self.send_command([3, 100, 100])
