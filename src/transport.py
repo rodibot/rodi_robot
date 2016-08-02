@@ -36,3 +36,6 @@ class Transport(object):
 
     def stop(self):
         self.send_command([3, 0, 0])
+
+    def see(self):
+        return self.send_command([5])
