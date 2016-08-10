@@ -5,6 +5,7 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Range
 from transport import Transport
 
+
 def cmd_vel_cb(msg, transport):
     if msg.angular.z == 0 and msg.linear.x == 0:
         transport.stop()
@@ -34,14 +35,14 @@ if __name__ == '__main__':
     sub = rospy.Subscriber('cmd_vel', Twist, cmd_vel_cb, transport)
     pub = rospy.Publisher('ultrasound', Range, queue_size=1)
 
-    rate = rospy.Rate(2) # 2 Hz
+    rate = rospy.Rate(2)  # 2 Hz
 
     range = Range()
-    range.radiation_type = 0 # ULTRASOUND
+    range.radiation_type = 0  # ULTRASOUND
     range.header.frame_id = "/ultrasound"
-    range.field_of_view = 0.52;
-    range.min_range = 0.2;
-    range.max_range = 4.0;
+    range.field_of_view = 0.52
+    range.min_range = 0.2
+    range.max_range = 4.0
 
     while not rospy.is_shutdown():
         try:
