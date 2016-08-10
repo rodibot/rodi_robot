@@ -4,6 +4,7 @@ import rospy
 from rospy import logerr
 from httplib import HTTPConnection
 
+
 class Transport(object):
 
     def __init__(self):
@@ -11,7 +12,7 @@ class Transport(object):
         self.port = rospy.get_param('~port', '1234')
 
     def send_command(self, params):
-        request = "/" + "/".join(map(str,params))
+        request = "/" + "/".join(map(str, params))
 
         try:
             self.conn = HTTPConnection(self.hostname, port=self.port)
