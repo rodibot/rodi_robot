@@ -5,8 +5,6 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Range
 from transport import Transport
 
-rospy.init_node('rodi_ws_node')
-
 def callback(msg, transport):
     if msg.angular.z == 0 and msg.linear.x == 0:
         transport.stop()
@@ -29,6 +27,8 @@ def callback(msg, transport):
         return
 
 if __name__ == '__main__':
+    rospy.init_node('rodi_ws_node')
+
     transport = Transport()
 
     sub = rospy.Subscriber('cmd_vel', Twist, callback, transport)
