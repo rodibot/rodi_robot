@@ -5,7 +5,7 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Range
 from transport import Transport
 
-def callback(msg, transport):
+def cmd_vel_cb(msg, transport):
     if msg.angular.z == 0 and msg.linear.x == 0:
         transport.stop()
         return
@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
     transport = Transport()
 
-    sub = rospy.Subscriber('cmd_vel', Twist, callback, transport)
+    sub = rospy.Subscriber('cmd_vel', Twist, cmd_vel_cb, transport)
     pub = rospy.Publisher('ultrasound', Range, queue_size=1)
 
     rate = rospy.Rate(2) # 2 Hz
