@@ -30,25 +30,25 @@ def callback(msg):
         transport.move_right()
         return
 
-sub = rospy.Subscriber('cmd_vel', Twist, callback)
-pub = rospy.Publisher('ultrasound', Range, queue_size=1)
+if __name__ == '__main__':
+    sub = rospy.Subscriber('cmd_vel', Twist, callback)
+    pub = rospy.Publisher('ultrasound', Range, queue_size=1)
 
-rate = rospy.Rate(2) # 2 Hz
+    rate = rospy.Rate(2) # 2 Hz
 
-range = Range()
-range.radiation_type = 0 # ULTRASOUND
-range.header.frame_id = "/ultrasound"
-range.field_of_view = 0.52;
-range.min_range = 0.2;
-range.max_range = 4.0;
+    range = Range()
+    range.radiation_type = 0 # ULTRASOUND
+    range.header.frame_id = "/ultrasound"
+    range.field_of_view = 0.52;
+    range.min_range = 0.2;
+    range.max_range = 4.0;
 
-while not rospy.is_shutdown():
-    try:
-        range.range = float(transport.see()) / 100.0
-        range.header.stamp = rospy.Time.now()
-        pub.publish(range)
-    except Exception as e:
-        rospy.logerr("getting sonar data failed: " + str(e))
+    while not rospy.is_shutdown():
+        try:
+            range.range = float(transport.see()) / 100.0
+            range.header.stamp = rospy.Time.now()
+            pub.publish(range)
+        except Exception as e:
+            rospy.logerr("getting sonar data failed: " + str(e))
 
-    rate.sleep()
-
+        rate.sleep()
