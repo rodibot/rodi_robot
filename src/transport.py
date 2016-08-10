@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 
+import rospy
 from rospy import logerr
 from httplib import HTTPConnection
 
 class Transport(object):
 
-    # TODO: make these configurable options
-    hostname = "192.168.4.1"
-    port = "1234"
+    def __init__(self):
+        self.hostname = rospy.get_param('~hostname', '192.168.4.1')
+        self.port = rospy.get_param('~port', '1234')
 
     def send_command(self, params):
         request = "/" + "/".join(map(str,params))
