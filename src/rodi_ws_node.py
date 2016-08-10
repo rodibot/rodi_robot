@@ -7,9 +7,7 @@ from transport import Transport
 
 rospy.init_node('rodi_ws_node')
 
-transport = Transport()
-
-def callback(msg):
+def callback(msg, transport):
     if msg.angular.z == 0 and msg.linear.x == 0:
         transport.stop()
         return
@@ -31,7 +29,9 @@ def callback(msg):
         return
 
 if __name__ == '__main__':
-    sub = rospy.Subscriber('cmd_vel', Twist, callback)
+    transport = Transport()
+
+    sub = rospy.Subscriber('cmd_vel', Twist, callback, transport)
     pub = rospy.Publisher('ultrasound', Range, queue_size=1)
 
     rate = rospy.Rate(2) # 2 Hz
