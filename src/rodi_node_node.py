@@ -28,7 +28,7 @@ def cmd_vel_cb(msg, transport):
         return
 
 if __name__ == '__main__':
-    rospy.init_node('rodi_ws_node')
+    rospy.init_node('rodi_robot_node')
 
     transport = Transport()
 
