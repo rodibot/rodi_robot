@@ -14,7 +14,9 @@ class Transport(object):
         request = "/" + "/".join(map(str, params))
 
         try:
-            self.conn = HTTPConnection(self.hostname, port=self.port)
+            self.conn = HTTPConnection(self.hostname,
+                                       port=self.port,
+                                       timeout=1.0)
             self.conn.request("GET", request)
             response = self.conn.getresponse().read()
             self.conn.close()
