@@ -13,6 +13,7 @@ class RodiRobot(object):
     def __init__(self):
         hostname = rospy.get_param('~hostname', '192.168.4.1')
         port = rospy.get_param('~port', '1234')
+        self.timeout = rospy.get_param('~timeout', 2.0)
 
         self.transport = Transport(hostname, port)
 
@@ -32,7 +33,10 @@ class RodiRobot(object):
         self.us_sensor.min_range = 0.2
         self.us_sensor.max_range = 4.0
 
+        self.last_cmd_vel = rospy.Time.now()
+
     def _cmd_vel_cb(self, msg):
+        self.last_cmd_vel = rospy.Time.now()
         if msg.angular.z == 0 and msg.linear.x == 0:
             self.transport.stop()
         elif msg.linear.x > 0:
@@ -46,6 +50,9 @@ class RodiRobot(object):
 
     def run(self):
         while not rospy.is_shutdown():
+            if (rospy.Time.now() - self.last_cmd_vel).secs >= self.timeout:
+                self.transport.stop()
+                self.last_cmd_vel = rospy.Time.now()
             try:
                 self.us_sensor.range = float(self.transport.see()) / 100.0
                 self.us_sensor.header.stamp = rospy.Time.now()
