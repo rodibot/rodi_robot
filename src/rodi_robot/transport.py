@@ -1,21 +1,22 @@
 #!/usr/bin/env python
 
-import rospy
 from rospy import logerr
 from httplib import HTTPConnection
 
 
 class Transport(object):
 
-    def __init__(self):
-        self.hostname = rospy.get_param('~hostname', '192.168.4.1')
-        self.port = rospy.get_param('~port', '1234')
+    def __init__(self, hostname='192.168.4.1', port='1234'):
+        self.hostname = hostname
+        self.port = port
 
     def send_command(self, params):
         request = "/" + "/".join(map(str, params))
 
         try:
-            self.conn = HTTPConnection(self.hostname, port=self.port)
+            self.conn = HTTPConnection(self.hostname,
+                                       port=self.port,
+                                       timeout=1.0)
             self.conn.request("GET", request)
             response = self.conn.getresponse().read()
             self.conn.close()

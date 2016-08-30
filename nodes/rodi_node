@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+"""Launches a ROS node that communicates with a RoDI."""
+
+import rospy
+from rodi_robot import RodiRobot
+
+
+if __name__ == '__main__':
+    rospy.init_node('rodi_robot_node')
+
+    rodi = RodiRobot()
+    rodi.run()
