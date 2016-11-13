@@ -31,7 +31,7 @@ class RodiRobot(object):
         self.us_sensor.header.frame_id = "/ultrasound"
         self.us_sensor.field_of_view = 0.52
         self.us_sensor.min_range = 0.2
-        self.us_sensor.max_range = 4.0
+        self.us_sensor.max_range = 1.0
 
         self.last_cmd_vel = rospy.Time.now()
 
