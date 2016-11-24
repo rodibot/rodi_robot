@@ -23,7 +23,7 @@ class Transport(object):
             return response
         except Exception as e:
             logerr("the HTTP request failed: " + str(e))
-            return 0
+            return None
 
     def move_forward(self):
         self.send_command([3, 100, 100])
