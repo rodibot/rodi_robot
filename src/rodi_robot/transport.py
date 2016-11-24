@@ -16,7 +16,7 @@ class Transport(object):
         try:
             self.conn = HTTPConnection(self.hostname,
                                        port=self.port,
-                                       timeout=1.0)
+                                       timeout=0.5)
             self.conn.request("GET", request)
             response = self.conn.getresponse().read()
             self.conn.close()
