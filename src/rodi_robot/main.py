@@ -54,9 +54,11 @@ class RodiRobot(object):
                 self.transport.stop()
                 self.last_cmd_vel = rospy.Time.now()
             try:
-                self.us_sensor.range = float(self.transport.see()) / 100.0
-                self.us_sensor.header.stamp = rospy.Time.now()
-                self.pub.publish(self.us_sensor)
+                range = self.transport.see()
+                if range is not None:
+                    self.us_sensor.range = float(range) / 100.0
+                    self.us_sensor.header.stamp = rospy.Time.now()
+                    self.pub.publish(self.us_sensor)
             except Exception as exception:
                 rospy.logerr("getting sonar data failed: " + str(exception))
 
