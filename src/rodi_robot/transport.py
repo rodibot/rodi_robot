@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from rospy import logerr
+from rospy import logdebug
 from httplib import HTTPConnection
 
 
@@ -24,7 +24,7 @@ class Transport(object):
                 return None
             return response
         except Exception as e:
-            logerr("the HTTP request failed: " + str(e))
+            logdebug("the HTTP request " + request + " failed: " + str(e))
             return None
 
     def move_forward(self):
