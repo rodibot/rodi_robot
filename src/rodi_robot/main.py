@@ -24,7 +24,7 @@ class RodiRobot(object):
                                    Range,
                                    queue_size=1)
 
-        self.rate = rospy.Rate(2)  # 2 Hz
+        self.rate = rospy.Rate(1)  # 1 Hz
 
         self.us_sensor = Range()
         self.us_sensor.radiation_type = 0  # ULTRASOUND
