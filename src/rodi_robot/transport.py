@@ -20,6 +20,8 @@ class Transport(object):
             self.conn.request("GET", request)
             response = self.conn.getresponse().read()
             self.conn.close()
+            if len(response) == 0:
+                return None
             return response
         except Exception as e:
             logerr("the HTTP request failed: " + str(e))
