@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>rodi_robot</name>
-  <version>0.0.0</version>
-  <description>The rodi_robot package</description>
+  <version>0.0.1</version>
+  <description>RoDI ROS package.
+    Allows to control a RoDI from the Robot Operating System (ROS) without the need 
+    to flash a custom firmware and just using the default firmware web services API.
+  </description>
 
   <maintainer email="javier@dowhile0.org">Javier Martinez Canillas</maintainer>
 
@@ -11,6 +14,7 @@
   <buildtool_depend>catkin</buildtool_depend>
 
   <depend>geometry_msgs</depend>
+  <depend>roslint</depend>
   <depend>rospy</depend>
   <depend>sensor_msgs</depend>
 
