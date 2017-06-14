@@ -7,7 +7,8 @@
     to flash a custom firmware and just using the default firmware web services API.
   </description>
 
-  <maintainer email="javier@dowhile0.org">Javier Martinez Canillas</maintainer>
+  <author email="javier@dowhile0.org">Javier Martinez Canillas</author>
+  <maintainer email="garyservin@gmail.com">Gary Servin</maintainer>
 
   <license>BSD</license>
 
