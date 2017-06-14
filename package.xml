@@ -10,10 +10,9 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <depend>geometry_msgs</depend>
   <depend>rospy</depend>
-
-  <exec_depend>geometry_msgs</exec_depend>
-  <exec_depend>sensor_msgs</exec_depend>
+  <depend>sensor_msgs</depend>
 
   <test_depend>roslint</test_depend>
   <test_depend>rosunit</test_depend>

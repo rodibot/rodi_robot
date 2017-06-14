@@ -14,7 +14,9 @@ include_directories(
 
 catkin_python_setup()
 catkin_package(CATKIN_DEPENDS
+  geometry_msgs
   rospy
+  sensor_msgs
 )
 
 catkin_install_python(PROGRAMS
