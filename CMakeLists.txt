@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 2.8.3)
 project(rodi_robot)
 
 find_package(catkin REQUIRED COMPONENTS
-  rospy
   geometry_msgs
+  roslint
+  rospy
   sensor_msgs
 )
 
@@ -27,7 +28,6 @@ install(DIRECTORY
 )
 
 if(CATKIN_ENABLE_TESTING)
-  find_package(catkin REQUIRED COMPONENTS roslint)
   roslint_python()
   roslint_add_test()
 endif()
